@@ -1,19 +1,21 @@
-let products = [];
+import { IProduct, IProductCreate } from "../types";
+
+let products: IProduct[] = [];
 
 function getProducts () {
   return products;
 }
 
-function getById (id) {
+function getById (id: number) {
   console.log('product by id: ', id);
   console.log('products by id: ', products);
   const product = products.find(product => product.id === id)
   return product;
 }
 
-function createProduct (bodyData) {
+function createProduct (bodyData: IProductCreate) {
   const product = {
-    "id": products.length + 1,
+    "id": Date.now(),
     "name": bodyData.name,
     "description": bodyData.description,
     "price": bodyData.price,
@@ -22,7 +24,7 @@ function createProduct (bodyData) {
   return product;
 }
 
-function updateProduct (id, bodyData) {
+function updateProduct (id: number, bodyData: IProductCreate) {
   let productUpdated;
 
   const newProducts = products.map(product => {
@@ -41,14 +43,14 @@ function updateProduct (id, bodyData) {
   return productUpdated;
 }
 
-function deleteProduct (id) {
+function deleteProduct (id: number) {
   products = products.filter(product => product.id!== id);
   return {
     "message": "product deleted successfully"
   }
 }
 
-module.exports = {
+export default {
   getProducts,
   getById,
   createProduct,

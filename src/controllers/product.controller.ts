@@ -1,11 +1,12 @@
-const ProductService = require('../services/products.service');
+import {Request, Response} from 'express';
+import ProductService from '../services/products.service';
 
-function getAllProducts (req, res) {
+function getAllProducts (_req: Request, res: Response) {
   const products = ProductService.getProducts()
   return res.json(products);
 }
 
-function getProductById (req, res) {
+function getProductById (req: Request, res: Response) {
   const productId = req.params.id
   
   const product = ProductService.getById(+productId)
@@ -18,12 +19,12 @@ function getProductById (req, res) {
   return res.json(product);
 }
 
-function createProduct (req, res) {
+function createProduct (req: Request, res: Response) {
   const product = ProductService.createProduct(req.body)
   return res.status(201).json(product)
 }
 
-function updateProduct (req, res) {
+function updateProduct (req: Request, res: Response) {
   const productId = req.params.id
 
   let product = ProductService.getById(+productId)
@@ -37,7 +38,7 @@ function updateProduct (req, res) {
   return res.json(product)
 }
 
-function deleteProduct (req, res) {
+function deleteProduct (req: Request, res: Response) {
   const productId = req.params.id
 
   let product = ProductService.getById(+productId)
@@ -51,7 +52,7 @@ function deleteProduct (req, res) {
   return res.json(response)
 }
 
-module.exports = {
+export default {
   getAllProducts,
   getProductById,
   createProduct,

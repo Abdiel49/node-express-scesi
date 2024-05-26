@@ -1,24 +1,25 @@
-const usersJson = require('../assets/users.json')
-let usersData = usersJson
+import usersJson from '../assets/users.json';
+import { IUser, IUserCreate } from '../types/user.types';
+
+let usersData = usersJson as IUser[];
 // const UserRepository = require('../respositories/user.repository.js')
 
 function getAllUsers () {
-  // const users = UserRepository.getAll()
-  // return users
   return usersData;
 }
 
-function getById (id) {
+function getById (id: string) {
   const user = usersData.find(user => user.id === id)
   return user;
 }
 
-function createUser (user) {
-  usersData.push(user)
+function createUser (user: IUserCreate) {
+
+  usersData.push({...user, id: Date.now() + ''});
   return user;
 }
 
-function updateUser (id, userData) {
+function updateUser (id: string, userData: IUser) {
   // actualizar el usuario // OLD CODE
   // UPDATE: using filter
   // const users = usersData.filter(user => user.id !== userId)
@@ -43,14 +44,14 @@ function updateUser (id, userData) {
   return userData;
 }
 
-function deleteUser (id) {
+function deleteUser (id: string) {
   usersData = usersData.filter(user => user.id !== id);
   return {
     "message": "user deleted successfully"
   }
 }
 
-module.exports = {
+export default {
   getAllUsers,
   getById,
   createUser,

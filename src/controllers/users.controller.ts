@@ -1,11 +1,12 @@
-const UserService = require('../services/users.service');
+import {Request, Response} from 'express'
+import UserService from '../services/users.service';
 
-function getAllUsers (_req, res) {
+function getAllUsers (_req: Request, res: Response) {
   const users = UserService.getAllUsers()
   return res.json(users);
 }
 
-function getUserById (req, res) {
+function getUserById (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
   // buscar los datos
@@ -22,7 +23,7 @@ function getUserById (req, res) {
   return res.json(user)
 }
 
-function createUser (req, res) {
+function createUser (req: Request, res: Response) {
   // estraer los datos de la request
   const bodyData = req.body;
   console.log('bodyData', bodyData);
@@ -32,7 +33,7 @@ function createUser (req, res) {
   return res.status(201).json(user)
 }
 
-function updateUser (req, res) {
+function updateUser (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
   const bodyData = req.body;
@@ -50,7 +51,7 @@ function updateUser (req, res) {
   return res.send(bodyData)
 }
 
-function deleteUser (req, res) {
+function deleteUser (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
 
@@ -69,7 +70,7 @@ function deleteUser (req, res) {
   return res.status(200).json(deleted)
 }
 
-module.exports = {
+export default {
   getAllUsers,
   getUserById,
   createUser,
