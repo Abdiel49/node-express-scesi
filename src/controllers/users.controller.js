@@ -46,7 +46,7 @@ function updateUser (req, res) {
     }) 
   }
 
-  user = UserService.update(id, bodyData);
+  user = UserService.updateUser(userId, bodyData);
   return res.send(bodyData)
 }
 

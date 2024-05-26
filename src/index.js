@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 // routes imports / requirements
 const healthRoutes = require('./routes/healthy.routes');
 const usersRoutes = require('./routes/users.routes');
+const productsRoutes = require('./routes/products.routes');
 
 
 // some dependencies and settings
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 // /products
 app.use('/check', healthRoutes)
 app.use('/users', usersRoutes)
+app.use('/products', productsRoutes)
 
 // server listening on port
 app.listen(SERVER_PORT, (err, res) => {
