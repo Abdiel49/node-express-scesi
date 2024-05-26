@@ -6,6 +6,14 @@ A simple example of how to use Node and ExpressJS for make a API client.
 
 Clone this repository, and run the following command:
 
+Copy `.env.example` to your project directory with `.env` file name.
+
+```bash
+$ cp .env.example .env
+```
+
+Install node dependencies:
+
 ```bash
 npm install
 ```
@@ -18,14 +26,10 @@ $ npm start
 
 Or run the following command for run on development mode:
 ```bash
-$ npx run start:dev
-# output:
-# [nodemon] 3.1.0
-# [nodemon] to restart at any time, enter `rs`
-# [nodemon] watching path(s): *.*
-# [nodemon] watching extensions: js,mjs,cjs,json
-# [nodemon] starting `node src/index.js`
-# Server is running on port 3000
+$ npm run start:dev
+# [nodemon] restarting due to changes...
+# [nodemon] starting `ts-node ./src/index.ts`
+# Server is running on port 5001 or some NODE_ENV in .env file
 ```
 
 ## liks
