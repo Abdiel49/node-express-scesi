@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import UserService from '../services/users.service';
+import UserService from './users.service';
 
 function getAllUsers (_req: Request, res: Response) {
   const users = UserService.getAllUsers()

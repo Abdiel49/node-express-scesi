@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import * as bodyParser from 'body-parser';
 import healthRoutes from './routes/healthy.routes';
-import usersRoutes from './routes/users.routes';
+import usersRoutes from './modules/users/users.routes';
 import productsRoutes from './routes/products.routes';
 
 

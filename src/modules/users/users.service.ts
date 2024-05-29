@@ -1,11 +1,12 @@
-import usersJson from '../assets/users.json';
-import { IUser, IUserCreate } from '../types/user.types';
+import usersJson from '../../assets/users.json';
+import { IUser, IUserCreate } from '../../types/user.types';
+import User from './user.model'
 
 let usersData = usersJson as IUser[];
 // const UserRepository = require('../respositories/user.repository.js')
 
-function getAllUsers () {
-  return usersData;
+async function getAllUsers () {
+  return User.findAll();
 }
 
 function getById (id: string) {
