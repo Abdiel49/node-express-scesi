@@ -1,17 +1,17 @@
 import {Request, Response} from 'express'
 import UserService from './users.service';
 
-function getAllUsers (_req: Request, res: Response) {
-  const users = UserService.getAllUsers()
+async function getAllUsers (_req: Request, res: Response) {
+  const users = await UserService.getAllUsers()
   return res.json(users);
 }
 
-function getUserById (req: Request, res: Response) {
+async function getUserById (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
   // buscar los datos
   // const user = usersData.find(user => user.id === userId)
-  const user = UserService.getById(userId)
+  const user = await UserService.getById(+userId)
 
   // responder con el usuario
   if (!user) {
@@ -23,40 +23,40 @@ function getUserById (req: Request, res: Response) {
   return res.json(user)
 }
 
-function createUser (req: Request, res: Response) {
+async function createUser (req: Request, res: Response) {
   // estraer los datos de la request
   const bodyData = req.body;
   console.log('bodyData', bodyData);
   // validar los datos del usuario
-  const user = UserService.createUser(bodyData);
+  const user = await UserService.createUser(bodyData);
   // responder con el usuario creado satisfied
   return res.status(201).json(user)
 }
 
-function updateUser (req: Request, res: Response) {
+async function updateUser (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
   const bodyData = req.body;
 
   // TODO: validar los datos del usuario
   // validar que el usuario con el ID existe
-  let user = UserService.getById(userId)
+  let user = await UserService.getById(+userId)
   if (!user) {
     return res.status(404).send({
       "message": "user not found"
     }) 
   }
 
-  user = UserService.updateUser(userId, bodyData);
-  return res.send(bodyData)
+  const response = await UserService.updateUser(+userId, bodyData);
+  return res.status(200).json(response)
 }
 
-function deleteUser (req: Request, res: Response) {
+async function deleteUser (req: Request, res: Response) {
   // estraer los datos de la request
   const userId = req.params.id
 
   // validar que el usuario con el ID existe
-  let user = UserService.getById(userId)
+  let user = UserService.getById(+userId)
   if (!user) {
     return res.status(404).send({
       "message": "user not found"
@@ -64,7 +64,7 @@ function deleteUser (req: Request, res: Response) {
   }
 
   // eliminar el usuario
-  const deleted = UserService.deleteUser(userId)
+  const deleted = await UserService.deleteUser(userId)
 
   // responder con el usuario creado satisfied
   return res.status(200).json(deleted)

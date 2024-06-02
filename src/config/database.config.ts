@@ -15,5 +15,8 @@ export const sequelize = new Sequelize(
     host: DB_HOST,
     port: Number(DB_PORT),
     dialect: 'mariadb',
+    define: {
+      timestamps: true,
+    },
   }
 );

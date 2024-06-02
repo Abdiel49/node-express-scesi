@@ -1,5 +1,5 @@
 // src/models/user.model.ts
-import { DataTypes, Model, Optional } from 'sequelize';
+import { CreationOptional, DataTypes, Model, Optional } from 'sequelize';
 import {sequelize} from '../../config/database.config';
 
 interface UserAttributes {
@@ -9,13 +9,15 @@ interface UserAttributes {
   dateOfBirth: Date;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+export interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
   public id!: number;
   public name!: string;
   public email!: string;
   public dateOfBirth!: Date;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 }
 
 User.init(
@@ -28,10 +30,18 @@ User.init(
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
+      validate: {
+        notEmpty: true,
+        is: /^[a-zA-Z0-9]*$/,
+      }
     },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false,
+      validate: {
+        isEmail: true,
+        notEmpty: true,
+      }
     },
     dateOfBirth: {
       type: DataTypes.DATE,
