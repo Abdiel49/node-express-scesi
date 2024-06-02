@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import ProductService from '../services/products.service';
+import ProductService from './products.service';
 
 function getAllProducts (_req: Request, res: Response) {
   const products = ProductService.getProducts()

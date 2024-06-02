@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import * as HealtController from '../controllers/healthy.controller';
+import * as HealtController from './healthy.controller';
 
 const router = Router()
 // define routes

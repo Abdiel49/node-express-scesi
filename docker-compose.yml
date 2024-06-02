@@ -9,10 +9,9 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3332:3306"
+      - "${DB_PORT}:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
-      - test
 
 volumes:
   mariadb_data:

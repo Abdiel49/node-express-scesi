@@ -1,4 +1,4 @@
-import { IProduct, IProductCreate } from "../types";
+import { IProduct, IProductCreate } from "../../types";
 
 let products: IProduct[] = [];
 
