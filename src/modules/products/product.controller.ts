@@ -1,15 +1,15 @@
-import {Request, Response} from 'express';
+import {Request, Response, response} from 'express';
 import ProductService from './products.service';
 
-function getAllProducts (_req: Request, res: Response) {
-  const products = ProductService.getProducts()
+async function getAllProducts (_req: Request, res: Response) {
+  const products = await ProductService.getProducts()
   return res.json(products);
 }
 
-function getProductById (req: Request, res: Response) {
+async function getProductById (req: Request, res: Response) {
   const productId = req.params.id
   
-  const product = ProductService.getById(+productId)
+  const product = await ProductService.getById(+productId)
   if (!product) {
     return res.status(404).send({
       "message": "product not found"
@@ -19,36 +19,44 @@ function getProductById (req: Request, res: Response) {
   return res.json(product);
 }
 
-function createProduct (req: Request, res: Response) {
-  const product = ProductService.createProduct(req.body)
+async function createProduct (req: Request, res: Response) {
+  const rawProduct = req.body;
+  // validate product
+  console.log('product to create', rawProduct);
+
+  // save product
+  const product = await ProductService.createProduct(rawProduct)
   return res.status(201).json(product)
 }
 
-function updateProduct (req: Request, res: Response) {
+async function updateProduct (req: Request, res: Response) {
   const productId = req.params.id
+  const rawProduct = req.body
+  // validate product
+  console.log('product to update', rawProduct);
 
-  let product = ProductService.getById(+productId)
+  let product = await ProductService.getById(+productId)
   if (!product) {
     return res.status(404).send({
       "message": "product not found"
     }) 
   }
 
-  product = ProductService.updateProduct(+productId, req.body)
-  return res.json(product)
+  const response =  await ProductService.updateProduct(+productId, rawProduct)
+  return res.json(response)
 }
 
-function deleteProduct (req: Request, res: Response) {
+async function deleteProduct (req: Request, res: Response) {
   const productId = req.params.id
 
-  let product = ProductService.getById(+productId)
+  let product = await ProductService.getById(+productId)
   if (!product) {
     return res.status(404).send({
       "message": "product not found"
     }) 
   }
 
-  const response = ProductService.deleteProduct(+productId)
+  const response = await ProductService.deleteProduct(+productId)
   return res.json(response)
 }
 
