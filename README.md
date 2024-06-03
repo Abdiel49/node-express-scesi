@@ -39,3 +39,34 @@ $ npm run start:dev
 
 ## Disclaimer
 This software is provided "as-is" without express support and is not subject to any license restrictions and any limitations under the License Agreement provided by the author, is only for teach about Backend development for SCESI members and applicants/candidates
+
+## Migrations Sequelize 
+
+Doc: [Sequelixe migrations](https://sequelize.org/docs/v7/cli/#creating-the-first-model-and-migration)
+
+Install Sequelice_cli
+
+```bash
+# using npm
+npm install --save-dev sequelize-cli
+# using yarn
+yarn add sequelize-cli --dev
+```
+
+Configurar Sequelize
+
+```bash
+# using npm
+npx sequelize-cli init
+# using yarn
+yarn sequelize-cli init
+```
+
+Generar las migracions:
+
+```bash
+npx sequelice-cli migration:create --name create-users
+# npx sequelice-cli migration:create --name create-others
+```
+
+Actualicar los metodos `up` y `down` de las migraciones
