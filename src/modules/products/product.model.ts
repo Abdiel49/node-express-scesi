@@ -46,10 +46,10 @@ Product.init(
       allowNull: false,
     },
     price: {
-      type: DataTypes.DECIMAL(10, 2), // Allow for decimal prices with 2 decimal places
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
-        min: 0.01, // Enforce a minimum price of 0.01
+        min: 0.01,
       },
     },
     brand: {
@@ -63,14 +63,13 @@ Product.init(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       validate: {
-        min: 0, // Enforce a minimum stock of 0
+        min: 0,
       },
     },
   },
   {
     sequelize,
     tableName: 'products',
-    // Enable timestamps for automatic creation and update
     timestamps: true,
   }
 );
