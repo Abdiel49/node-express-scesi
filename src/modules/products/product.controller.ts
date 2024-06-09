@@ -22,7 +22,6 @@ async function getProductById (req: Request, res: Response) {
 async function createProduct (req: Request, res: Response) {
   const rawProduct = req.body;
   // validate product
-  console.log('product to create', rawProduct);
 
   // save product
   const product = await ProductService.createProduct(rawProduct)
