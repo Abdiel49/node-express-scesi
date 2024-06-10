@@ -1,6 +1,6 @@
 # version: '3.8'
 services:
-  mariadb:
+  database:
     image: mariadb:jammy
     container_name: mariadb
     environment:
@@ -12,6 +12,26 @@ services:
       - "${DB_PORT}:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
+  
+  # node-app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: node-app
+  #   environment:
+  #     - MYSQL_DATABASE=${MYSQL_DATABASE}
+  #     - MYSQL_USER=${MYSQL_USER}
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #     - DB_PASSWORD=${DB_PASSWORD}
+  #     - DB_HOST=${DB_HOST}
+  #     - DB_PORT=${DB_PORT}
+  #   depends_on:
+  #     - database
+  #   ports:
+  #     - "${NODE_PORT}:${NODE_PORT}"
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
 
 volumes:
   mariadb_data:
