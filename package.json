@@ -9,6 +9,7 @@
     "build": "tsc",
     "test": "mocha --recursive",
     "dev": "ts-node --esm src/index.ts",
+    "db:migrate": "npx sequelize-cli db:migrate",
     "start:dev": "nodemon --exec ts-node ./src/index.ts --watch src"
   },
   "keywords": [],

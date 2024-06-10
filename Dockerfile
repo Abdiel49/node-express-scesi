@@ -10,10 +10,10 @@ COPY . .
 
 RUN npm install --only=dev && npm run build
 
-# RUN npx sequelize-cli db:migrate
+# RUN npm run db:migrate
 
 EXPOSE ${NODE_PORT}
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 CMD ["npm", "start"]

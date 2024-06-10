@@ -13,25 +13,25 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
   
-  # node-app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: node-app
-  #   environment:
-  #     - MYSQL_DATABASE=${MYSQL_DATABASE}
-  #     - MYSQL_USER=${MYSQL_USER}
-  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-  #     - DB_PASSWORD=${DB_PASSWORD}
-  #     - DB_HOST=${DB_HOST}
-  #     - DB_PORT=${DB_PORT}
-  #   depends_on:
-  #     - database
-  #   ports:
-  #     - "${NODE_PORT}:${NODE_PORT}"
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-app
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    depends_on:
+      - database
+    ports:
+      - "${NODE_PORT}:${NODE_PORT}"
+    volumes:
+      - .:/app
+      - /app/node_modules
 
 volumes:
   mariadb_data:
