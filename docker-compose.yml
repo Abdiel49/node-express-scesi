@@ -14,17 +14,19 @@ services:
       - mariadb_data:/var/lib/mysql
   
   node-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: node-app
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
+    build: .
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    env_file: .env
+    container_name: node-server
+    # environment:
+    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
+    #   - MYSQL_USER=${MYSQL_USER}
+    #   - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    #   - DB_PASSWORD=${DB_PASSWORD}
+    #   - DB_HOST=${DB_HOST}
+    #   - DB_PORT=${DB_PORT}
     depends_on:
       - database
     ports:

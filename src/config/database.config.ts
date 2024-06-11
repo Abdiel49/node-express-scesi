@@ -14,6 +14,7 @@ export const sequelize = new Sequelize(
   {
     host: DB_HOST,
     port: Number(DB_PORT),
+    logging: false,
     // models: [__dirname + '/../mudules'],
     dialect: 'mariadb',
     define: {
