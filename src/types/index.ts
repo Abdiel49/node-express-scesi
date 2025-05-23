@@ -1,2 +1,2 @@
-export * from './products.types'
+export * from '../modules/products/products.types'
 export * from './user.types'
